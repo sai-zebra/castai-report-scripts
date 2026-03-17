@@ -3,7 +3,7 @@ import os
 import pandas as pd
  
 # Folder containing all cluster outputs
-folder = "../json_output/problematic_workloads"
+folder = "json_output/problematic_workloads"
  
 rows = []
  
@@ -49,7 +49,7 @@ df = df.fillna("-")
 df = df.replace('', '-')
  
 # Save to excel
-df.to_excel("../xlsx_output/problematic_workloads.xlsx", index=False)
+df.to_excel("xlsx_output/problematic_workloads.xlsx", index=False)
  
 print("Excel file created: problematic_workloads.xlsx")
  

@@ -2,7 +2,7 @@
 # import json
 # import pandas as pd
  
-# folder_path = "../json_output/cluster_security"
+# folder_path = "json_output/cluster_security"
 # rows = []
  
 # for file in os.listdir(folder_path):
@@ -34,7 +34,7 @@
 # df = df.fillna("-")
 # df = df.replace('', '-')
  
-# df.to_excel("../xlsx_output/cluster_security.xlsx", index=False)
+# df.to_excel("xlsx_output/cluster_security.xlsx", index=False)
  
 # print("Excel file created: cluster_security.xlsx")
  

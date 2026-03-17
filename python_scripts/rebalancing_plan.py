@@ -2,7 +2,7 @@ import json
 import os
 import pandas as pd
  
-folder = "../json_output/rebalancing_plan"
+folder = "json_output/rebalancing_plan"
 rows = []
  
 for file in os.listdir(folder):
@@ -44,7 +44,7 @@ df = pd.DataFrame(rows)
 df = df.fillna("-")
 df = df.replace('', '-')
  
-df.to_excel("../xlsx_output/rebalancing_plan.xlsx", index=False)
+df.to_excel("xlsx_output/rebalancing_plan.xlsx", index=False)
  
 print("Excel file generated: rebalancing_plan.xlsx")
  

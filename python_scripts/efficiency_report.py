@@ -3,7 +3,7 @@ import os
 from narwhals import col
 import pandas as pd
  
-folder = "../json_output/efficiency_report"
+folder = "json_output/efficiency_report"
 rows = []
  
 # Formatting functions
@@ -68,6 +68,6 @@ df = df.replace('', '-')
 
 # df.columns = pd.MultiIndex.from_tuples(df.columns)  # this is for multi-level columns
  
-df.to_excel("../xlsx_output/efficiency_report.xlsx", index=False) #this index true makes to get the serial number in the excel file
+df.to_excel("xlsx_output/efficiency_report.xlsx", index=False) #this index true makes to get the serial number in the excel file
  
-print("Excel file created: ../xlsx_output/efficiency_report.xlsx successfully")
+print("Excel file created: xlsx_output/efficiency_report.xlsx successfully")

@@ -2,7 +2,7 @@ import json
 import pandas as pd
  
 # Load JSON file
-with open("../json_output/platform_usage_report/platform_usage_report.json", "r") as f:
+with open("json_output/platform_usage_report/platform_usage_report.json", "r") as f:
     data = json.load(f)
  
 rows = []
@@ -29,7 +29,7 @@ df = df.fillna("-")
 df = df.replace('', '-')
  
 # Save to Excel
-df.to_excel("../xlsx_output/platform_usage_report.xlsx", index=False)
+df.to_excel("xlsx_output/platform_usage_report.xlsx", index=False)
  
 print("Excel file created: platform_usage_report.xlsx")
  

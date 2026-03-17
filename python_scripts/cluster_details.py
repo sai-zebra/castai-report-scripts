@@ -6,7 +6,7 @@ import pandas as pd
  
 cluster_map = {}
  
-with open("../cluster_details/clusters_list.txt", "r") as f:
+with open("cluster_details/clusters_list.txt", "r") as f:
     next(f)  # skip header
     for line in f:
         line = line.strip()
@@ -17,7 +17,7 @@ with open("../cluster_details/clusters_list.txt", "r") as f:
 
 # to Read cluster_details.json
  
-with open("../json_output/cluster_details/cluster_details.json", "r") as f:
+with open("json_output/cluster_details/cluster_details.json", "r") as f:
     data = json.load(f)
  
 rows = []
@@ -81,7 +81,7 @@ df = df.replace('', '-')
  
 #Export Excel
  
-df.to_excel("../xlsx_output/cluster_details.xlsx", index=False)
+df.to_excel("xlsx_output/cluster_details.xlsx", index=False)
  
 print("Excel file created successfully: cluster_details.xlsx")
  

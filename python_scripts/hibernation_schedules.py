@@ -4,7 +4,7 @@ import pandas as pd
 # Load Cluster Mapping
 cluster_map = {}
  
-with open("../cluster_details/clusters_list.txt", "r") as f:
+with open("cluster_details/clusters_list.txt", "r") as f:
     for line in f:
         line = line.strip()
         if line:
@@ -12,7 +12,7 @@ with open("../cluster_details/clusters_list.txt", "r") as f:
             cluster_map[cid.strip()] = cname.strip()
  
 # Load JSON file
-with open("../json_output/hibernation_schedules/hibernation_schedules.json", "r") as f:
+with open("json_output/hibernation_schedules/hibernation_schedules.json", "r") as f:
     data = json.load(f)
  
 rows = []
@@ -61,7 +61,7 @@ df = df.fillna("-")
 df = df.replace('None', '-')
  
 # Save to Excel
-df.to_excel("../xlsx_output/platform_hibernation_schedules.xlsx", index=False)
+df.to_excel("xlsx_output/platform_hibernation_schedules.xlsx", index=False)
  
 print("Excel file created: platform_hibernation_schedules.xlsx")
  

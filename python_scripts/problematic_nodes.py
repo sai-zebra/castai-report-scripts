@@ -2,7 +2,7 @@ import json
 import os
 import pandas as pd
  
-folder = "../json_output/problematic_nodes"   # folder containing json files
+folder = "json_output/problematic_nodes"   # folder containing json files
 rows = []
  
 for file in os.listdir(folder):
@@ -31,7 +31,7 @@ df = pd.DataFrame(rows)
 df = df.fillna("-")
 df = df.replace('', '-')
  
-df.to_excel("../xlsx_output/problematic_nodes.xlsx", index=False)
+df.to_excel("xlsx_output/problematic_nodes.xlsx", index=False)
  
 print("Excel file created: problematic_nodes.xlsx")
  

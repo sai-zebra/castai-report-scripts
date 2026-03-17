@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT_DIR="../json_output/all_clusters"
+OUTPUT_DIR="json_output/all_clusters"
 TOKEN="b4a8f0f6ea194af7c629ffa3e66aad487401d9a392be90b25dfd0446b963e2ef"
 
 mkdir -p "$OUTPUT_DIR"

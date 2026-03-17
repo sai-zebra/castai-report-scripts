@@ -3,7 +3,7 @@ import os
 import pandas as pd
  
 # Folder where all cluster JSON files exist
-folder = "../json_output/workload_scalingpolicies"   # folder containing json files
+folder = "json_output/workload_scalingpolicies"   # folder containing json files
  
 rows = []
  
@@ -65,7 +65,7 @@ df = df.fillna("-")
 df = df.replace('', '-')
  
 # Write to Excel
-df.to_excel("../xlsx_output/workload_scalingpolicies.xlsx", index=False)
+df.to_excel("xlsx_output/workload_scalingpolicies.xlsx", index=False)
  
 print("Excel file created: workload_scalingpolicies.xlsx")
  

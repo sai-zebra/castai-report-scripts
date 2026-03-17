@@ -3,8 +3,8 @@ import pandas as pd
 import os
  
 # Folder containing all cluster JSON files
-INPUT_FOLDER = "../json_output/nodes_list"
-OUTPUT_FILE = "../xlsx_output/nodes_list.xlsx"
+INPUT_FOLDER = "json_output/nodes_list"
+OUTPUT_FILE = "xlsx_output/nodes_list.xlsx"
  
 rows = []
  

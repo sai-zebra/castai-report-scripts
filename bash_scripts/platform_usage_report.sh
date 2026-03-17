@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT_DIR="../json_output/platform_usage_report"
+OUTPUT_DIR="json_output/platform_usage_report"
 TOKEN="b4a8f0f6ea194af7c629ffa3e66aad487401d9a392be90b25dfd0446b963e2ef"
 
 mkdir -p "$OUTPUT_DIR"

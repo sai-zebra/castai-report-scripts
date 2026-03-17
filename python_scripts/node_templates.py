@@ -3,7 +3,7 @@ import json
 import pandas as pd
  
 # Folder where all cluster JSON outputs are stored
-folder_path = "../json_output/node_templates"
+folder_path = "json_output/node_templates"
  
 data = []
  
@@ -55,7 +55,7 @@ df = pd.DataFrame(data)
 df = df.fillna("-")
 df = df.replace('', '-')
  
-df.to_excel("../xlsx_output/node_templates.xlsx", index=False)
+df.to_excel("xlsx_output/node_templates.xlsx", index=False)
  
-print("Excel file created: all_clusters_node_templates.xlsx")
+print("Excel file created: xlsx_output/node_templates.xlsx")
  

@@ -5,7 +5,7 @@ import pandas as pd
  
 cluster_map = {}
  
-with open("../cluster_details/clusters.txt", "r") as f:
+with open("cluster_details/clusters.txt", "r") as f:
     lines = f.readlines()
  
     for line in lines:
@@ -15,7 +15,7 @@ with open("../cluster_details/clusters.txt", "r") as f:
             cluster_map[cluster_id.strip()] = cluster_name.strip()
  
 #Load JSON file 
-with open("../json_output/workloadautoscaler_agents_status/workloadautoscaler_agents_status.json", "r") as f:
+with open("json_output/workloadautoscaler_agents_status/workloadautoscaler_agents_status.json", "r") as f:
     data = json.load(f)
  
 #Extract required fields
@@ -52,7 +52,7 @@ df = df.fillna("-")
 df = df.replace('', '-')
  
 #Export to Excel
-output_file = "../xlsx_output/wlas_agents_status.xlsx"
+output_file = "xlsx_output/wlas_agents_status.xlsx"
  
 df.to_excel(output_file, index=False)
  

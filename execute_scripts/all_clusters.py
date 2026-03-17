@@ -12,7 +12,7 @@ def format_hr_datetime(timestamp):
         return "-"
 
 # Load JSON file
-with open("../json_output/all_clusters/all_clusters.json", "r") as f:
+with open("json_output/all_clusters/all_clusters.json", "r") as f:
  data = json.load(f)
  
 clusters = data.get("items", [])
@@ -73,10 +73,10 @@ df = df.fillna("-")
 df = df.replace('', '-')
 df = df.replace('None', '-')
  
-df.to_excel("../xlsx_output/all_clusters.xlsx", index=False)
+df.to_excel("xlsx_output/all_clusters.xlsx", index=False)
  
 # Create TXT file
-with open("../cluster_details/clusters_list.txt", "w") as f:
+with open("cluster_details/clusters_list.txt", "w") as f:
  f.write("\n".join(txt_lines))
 
 print("Excel file created: cluster_output.xlsx")

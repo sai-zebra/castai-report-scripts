@@ -1,7 +1,7 @@
 # #!/bin/bash
 
-# CLUSTER_FILE="../cluster_details/cluster.txt"
-# OUTPUT_DIR="../json_output/cluster_security"
+# CLUSTER_FILE="cluster_details/clusters_list.txt"
+# OUTPUT_DIR="json_output/cluster_security"
 # TOKEN="b4a8f0f6ea194af7c629ffa3e66aad487401d9a392be90b25dfd0446b963e2ef"
 
 # # Create output directory if it doesn't exist

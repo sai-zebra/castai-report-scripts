@@ -2,8 +2,8 @@ import json
 import pandas as pd
 import os
  
-INPUT_FOLDER = "../json_output/unscheduled_pods"
-OUTPUT_FILE = "../xlsx_output/unscheduled_pods.xlsx"
+INPUT_FOLDER = "json_output/unscheduled_pods"
+OUTPUT_FILE = "xlsx_output/unscheduled_pods.xlsx"
  
 rows = []
  
