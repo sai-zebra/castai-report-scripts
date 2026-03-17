@@ -123,7 +123,7 @@ jobs:
           python-version: '3.9'
  
       - name: Install Dependencies
-        run: pip install pandas openpyxl
+        run: pip install pandas openpyxl xlsxwriter
  
       - name: Create Report Folder
         run: mkdir -p cast.ai_report
