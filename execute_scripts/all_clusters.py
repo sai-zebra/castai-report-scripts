@@ -12,7 +12,7 @@ def format_hr_datetime(timestamp):
         return "-"
 
 # Load JSON file
-with open("../json_output/all_clusters/cluster_details.json", "r") as f:
+with open("../json_output/all_clusters/all_clusters.json", "r") as f:
  data = json.load(f)
  
 clusters = data.get("items", [])
