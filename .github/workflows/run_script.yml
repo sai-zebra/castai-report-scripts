@@ -1,0 +1,132 @@
+name: CAST AI Automation Pipeline
+ 
+on:
+  schedule:
+    - cron: "0 17 * * *"   # runs daily at 5pm 
+  workflow_dispatch:      #manual trigger
+ 
+jobs:
+
+#job 1: for generating clusters_list.txt
+  generate-clusters:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      #creates directory for cluster details
+      - name: Create cluster_details folder
+        run: mkdir -p cluster_details
+
+      #runs all bash scripts
+      - name: Run Bash Script 
+        run: |
+          chmod +x execute_scripts/all_clusters.sh
+          ./execute_scripts/all_clusters.sh
+
+      #prints all cluster details
+      - name: Verify cluster list
+        run: |
+          ls -l cluster_details/
+          cat cluster_details/clusters_list.txt
+
+      #uploads clusters_list.txt to artifacts for use in next job
+      - name: Upload Cluster List
+        uses: actions/upload-artifact@v3
+        with:
+          name: cluster-list
+          path: cluster_details/clusters_list.txt
+ 
+#job 2: for executing other scripts
+  process-data:
+    runs-on: ubuntu-latest
+    needs: generate-clusters
+ 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+ 
+      - name: Download Cluster List
+        uses: actions/download-artifact@v3
+        with:
+          name: cluster-list
+          path: cluster_details/
+ 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+ 
+      - name: Install Dependencies
+        run: pip install pandas openpyxl
+      
+      #creates output folders for json and excel files
+      - name: Create Output Folders  
+        run: |
+          mkdir -p json_output
+          mkdir -p xlsx_output
+
+      #executes all bash scripts
+      - name: Run Bash Scripts
+        run: |
+          chmod +x execute_scripts/run_bashscripts.sh
+          ./execute_scripts/run_bashscripts.sh  
+
+      #executes all python scripts to convert json to excel
+      - name: Run Python Scripts
+        run: |
+          chmod +x execute_scripts/run_pythonscripts.sh
+          ./execute_scripts/run_pythonscripts.sh
+ 
+      - name: Upload Intermediate Outputs
+        uses: actions/upload-artifact@v3
+        with:
+          name: processed-data
+          path: |
+            json_output/
+            xlsx_output/
+ 
+# JOB 3: Generate Final Report
+  generate-report:
+    runs-on: ubuntu-latest
+    needs: process-data
+ 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+ 
+      - name: Download Processed Data
+        uses: actions/download-artifact@v3
+        with:
+          name: processed-data
+ 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+ 
+      - name: Install Dependencies
+        run: pip install pandas openpyxl
+ 
+      - name: Create Report Folder
+        run: mkdir -p cast.ai_report
+
+      #merges all excel files
+      - name: Merge Excel Files
+        run: python execute_scripts/merge_excelfiles.py
+
+      #generates final report in html format from merged excel file
+      - name: Generate HTML Report
+        run: python execute_scripts/excel_to_html_report.py
+
+      #uploads final report to artifacts
+      - name: Upload Final Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: castai-final-report
+          path: cast.ai_report/
+
+      - name: Success Message
+        run: echo "CAST AI Automation Pipeline completed successfully!"
+ 
