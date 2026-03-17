@@ -13,7 +13,7 @@ jobs:
  
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       #creates directory for cluster details
       - name: Create cluster_details folder
@@ -33,7 +33,7 @@ jobs:
 
       #uploads clusters_list.txt to artifacts for use in next job
       - name: Upload Cluster List
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cluster-list
           path: cluster_details/clusters_list.txt
@@ -45,10 +45,10 @@ jobs:
  
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - name: Download Cluster List
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: cluster-list
           path: cluster_details/
@@ -80,7 +80,7 @@ jobs:
           ./execute_scripts/run_pythonscripts.sh
  
       - name: Upload Intermediate Outputs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: processed-data
           path: |
@@ -94,10 +94,10 @@ jobs:
  
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
  
       - name: Download Processed Data
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: processed-data
  
@@ -122,7 +122,7 @@ jobs:
 
       #uploads final report to artifacts
       - name: Upload Final Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: castai-final-report
           path: cast.ai_report/
