@@ -26,7 +26,6 @@ jobs:
       #creating of directories
       - name: Create cluster_details folder
         run: mkdir -p cluster_details
-        run: mkdir -p xlsx_output
 
       #executing all_clusters.sh
       - name: Run all_clusters Bash Script
