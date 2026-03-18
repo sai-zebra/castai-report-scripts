@@ -6,7 +6,7 @@ SCRIPT_DIR="$BASE_DIR/python_scripts"
 for file in "$SCRIPT_DIR"/*.py; do
     if [ -f "$file" ]; then
         echo "Executing $file..."
-        py "$file"
+        python "$file"
     fi
 done
 
