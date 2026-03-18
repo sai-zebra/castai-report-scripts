@@ -30,6 +30,13 @@ for file in os.listdir(folder):
             data = json.load(f)
 
         items = data.get("items",{})
+
+        #handles list case
+        if isinstance(items, list) and len(items) > 0:
+            items = items[0]
+        else:
+            items = {}
+            
         summary = items.get("summary",{})
         current = items.get("current",{})
  
