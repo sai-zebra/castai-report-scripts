@@ -67,7 +67,7 @@ for item in data.get("items", []):
         "Storage Claimed": round(float(item.get("storageClaimed", 0)), 2),
         # "Storage Cost Hourly": item.get("storageCostHourly"),
 
-        "Cluster Score": float(item.get("clusterScore", 0))
+        "Cluster Score": item.get("clusterScore")
     }
  
     rows.append(row)

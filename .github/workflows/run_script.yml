@@ -69,6 +69,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: clusters-data
+          path: .
  
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -76,7 +77,7 @@ jobs:
           python-version: '3.9'
  
       - name: Install Dependencies
-        run: pip install pandas openpyxl
+        run: pip install pandas openpyxl narwhals
  
       # - name: Create Output Folders 
       #   run: |
