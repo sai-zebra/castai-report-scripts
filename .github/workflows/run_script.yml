@@ -112,10 +112,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
  
-      - name: Download Processed Data
+      - name: Download Processed Outputs
         uses: actions/download-artifact@v4
         with:
-          name: processed-data
+          name: processed-outputs
  
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -128,11 +128,6 @@ jobs:
       - name: Create Report Folder
         run: mkdir -p cast.ai_report
 
-      - name: Download Processed Outputs
-        uses: actions/download-artifact@v4
-        with:
-          name: processed-outputs
- 
       - name: Merge Excel Files
         run: python execute_scripts/merge_excelfiles.py
  
