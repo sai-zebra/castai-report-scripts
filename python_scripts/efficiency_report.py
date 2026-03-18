@@ -29,8 +29,8 @@ for file in os.listdir(folder):
         with open(os.path.join(folder,file)) as f:
             data = json.load(f)
 
-        summary = data.get("summary",{})
-        current = data.get("current",{})
+        summary = data.get("summary",{}) or {}
+        current = data.get("current",{}) or {}
  
         row = {
  
