@@ -147,4 +147,53 @@ jobs:
  
       - name: Success Message
         run: echo "CASTAI-Report Generation Pipeline completed successfully!"
+
+#JOB 4: Send Email Notification
+#   send-email:
+#     runs-on: ubuntu-latest
+#     need: generate-report
+
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+
+#       - name: Download Final Report
+#         uses: actions/download-artifact@v4
+#         with:
+#          name: cast.ai_report
+
+#       - name: Setup Python
+#         uses: actions/setup-python@v4
+#         with:
+#          python-version: '3.9'
+
+#       - name: Send Email
+#         run: python send_report/send_email.py
+#         env:
+#          EMAIL_USERNAME: ${{secrets.EMAIL_USERNAME}}
+#          EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+#          TO_EMAIL: ${{secrets.TO_EMAIL}}
+
+# #JOB 5: Send Notification to Teams
+#   notify-teams:
+#     runs-on: ubuntu:latest
+#     needs: generate-report
+
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+
+#       - name: Setup Python
+#         uses: actions/setup-python@v4
+#         with:
+#          python-version: '3.9'
+
+#       - name: Install Requests Library
+#         run: pip install requests
+
+#       - name: Send Notification to Teams
+#         run: python send_report/send_teams.py
+#         env:
+#          TEAMS_WEBHOOK_URL: ${{secrets.TEAMS_WEBHOOK_URL}}
+  
  
