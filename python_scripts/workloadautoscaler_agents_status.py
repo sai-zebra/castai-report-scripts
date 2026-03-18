@@ -5,7 +5,7 @@ import pandas as pd
  
 cluster_map = {}
  
-with open("cluster_details/clusters.txt", "r") as f:
+with open("cluster_details/clusters_list.txt", "r") as f:
     lines = f.readlines()
  
     for line in lines:

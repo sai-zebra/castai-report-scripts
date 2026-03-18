@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BASE_DIR=$(dirname "$0")/..
 SCRIPT_DIR="$BASE_DIR/python_scripts"
 

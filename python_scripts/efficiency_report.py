@@ -28,9 +28,10 @@ for file in os.listdir(folder):
  
         with open(os.path.join(folder,file)) as f:
             data = json.load(f)
- 
-        summary = data.get("summary",{})
-        current = data.get("current",{})
+
+        items = data.get("items",{})
+        summary = items.get("summary",{})
+        current = items.get("current",{})
  
         row = {
  
@@ -40,10 +41,10 @@ for file in os.listdir(folder):
             # Summary for the time period
             ("Summary CPU Overprov %"): percent(summary.get("cpuOverprovisioningPercent")),
             ("Summary RAM Overprov %"): percent(summary.get("ramOverprovisioningPercent")),
-            (" Summary Storage Overprov %"): percent(summary.get("storageOverprovisioningPercent")),
+            ("Summary Storage Overprov %"): percent(summary.get("storageOverprovisioningPercent")),
  
-            # Current used at the momentr when the data was pulled, not for the time period
-            (" Current CPU Overprov %"): percent(current.get("cpuOverprovisioningPercent")),
+            # Current used at the moment when the data was pulled, not for the time period
+            ("Current CPU Overprov %"): percent(current.get("cpuOverprovisioningPercent")),
             ("Current","CPU Provisioned"): cpu(current.get("cpuProvisioned")),
             ("Current","CPU Requested"): cpu(current.get("cpuRequested")),
             ("Current","CPU Used"): cpu(current.get("cpuUsed")),

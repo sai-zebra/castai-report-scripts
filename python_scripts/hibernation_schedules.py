@@ -30,10 +30,6 @@ for item in data["items"]:
     # Remove CRON_TZ from cron expressions
     pause_cron = item["pauseConfig"]["schedule"]["cronExpression"].replace("CRON_TZ=", "")
     resume_cron = item["resumeConfig"]["schedule"]["cronExpression"].replace("CRON_TZ=", "")
-    # pause_cron = item["pauseConfig"]["schedule"]["cronExpression"].split()[-5]
-    # pause_cron = "".join(pause_cron)
-    # resume_cron = item["resumeConfig"]["schedule"]["cronExpression"].split()[-5]
-    # resume_cron = "".join(resume_cron)
 
  
     row = {
