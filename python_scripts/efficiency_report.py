@@ -29,16 +29,8 @@ for file in os.listdir(folder):
         with open(os.path.join(folder,file)) as f:
             data = json.load(f)
 
-        items = data.get("items",{})
-
-        #handles list case
-        if isinstance(items, list) and len(items) > 0:
-            items = items[0]
-        else:
-            items = {}
-            
-        summary = items.get("summary",{})
-        current = items.get("current",{})
+        summary = data.get("summary",{})
+        current = data.get("current",{})
  
         row = {
  
@@ -52,9 +44,9 @@ for file in os.listdir(folder):
  
             # Current used at the moment when the data was pulled, not for the time period
             ("Current CPU Overprov %"): percent(current.get("cpuOverprovisioningPercent")),
-            ("Current","CPU Provisioned"): cpu(current.get("cpuProvisioned")),
-            ("Current","CPU Requested"): cpu(current.get("cpuRequested")),
-            ("Current","CPU Used"): cpu(current.get("cpuUsed")),
+            ("Current CPU Provisioned"): cpu(current.get("cpuProvisioned")),
+            ("Current CPU Requested"): cpu(current.get("cpuRequested")),
+            ("Current CPU Used"): cpu(current.get("cpuUsed")),
             
             ("Current RAM Overprov %"): percent(current.get("ramOverprovisioningPercent")),
             ("Current RAM Provisioned"): ram(current.get("ramGibProvisioned")),
