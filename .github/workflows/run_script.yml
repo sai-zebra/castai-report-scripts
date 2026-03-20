@@ -1,7 +1,7 @@
 name: CASTAI-Report Generation
  
 on:
-  schedule:
+  # schedule:
     # - cron: "0 17 * * *" #runs daily at 5pm
   workflow_dispatch:    #manual trigger
    inputs:
