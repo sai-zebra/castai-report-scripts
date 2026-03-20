@@ -2,7 +2,7 @@
 
 CLUSTER_FILE="cluster_details/clusters_list.txt"
 OUTPUT_DIR="json_output/workload_scalingpolicies"
-TOKEN="<API_TOKEN>"
+TOKEN="${API_TOKEN}"
 
 mkdir -p "$OUTPUT_DIR"
 

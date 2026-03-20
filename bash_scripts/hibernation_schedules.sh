@@ -1,8 +1,8 @@
 #!/bin/bash
 
 OUTPUT_DIR="json_output/hibernation_schedules"
-TOKEN="<API_TOKEN>"
-ORGANIZATION_ID="<ORG_ID>" # Replace with child organization ID (platform)
+TOKEN="${API_TOKEN}"
+ORGANIZATION_ID="${ORG_ID}" # Replace with child organization ID (platform)
 
 mkdir -p "$OUTPUT_DIR"
 

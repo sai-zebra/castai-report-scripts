@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_DIR="json_output/platform_usage_report"
-TOKEN="<API_TOKEN>"
+TOKEN="${API_TOKEN}"
 
 mkdir -p "$OUTPUT_DIR"
 OUTPUT_FILE="$OUTPUT_DIR/platform_usage_report.json"

@@ -2,7 +2,7 @@
 
 CLUSTER_FILE="cluster_details/clusters_list.txt"
 OUTPUT_DIR="json_output/nodes_list"
-TOKEN="<API_TOKEN>"
+TOKEN="${API_TOKEN}"
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"

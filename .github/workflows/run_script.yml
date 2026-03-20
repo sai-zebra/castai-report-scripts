@@ -2,9 +2,15 @@ name: CASTAI-Report Generation Pipeline
  
 on:
   schedule:
-    - cron: "0 17 * * *" #runs daily at 5pm
+    # - cron: "0 17 * * *" #runs daily at 5pm
   workflow_dispatch:    #manual trigger
- 
+   inputs:
+    start_time:
+     description: "Enter Start Time (YYYY:MM:DDTHH:MM:SS.000000Z)"
+     required: true
+    end_time:
+     description: "Enter End Time (YYYY:MM:DDTHH:MM:SS.000000Z)"
+     required: true
 jobs:
  
 # JOB 1: Generate clusters_list.txt and all_clusters.xlsx
@@ -84,6 +90,9 @@ jobs:
       #     mkdir -p json_output
  
       - name: Run Bash Scripts
+        env:
+         START_TIME: ${{github.event.inputs.start_time}}
+         END_TIME: ${{github.event.inputs.end_time}}
         run: |
           chmod +x execute_scripts/run_bashscripts.sh
           ./execute_scripts/run_bashscripts.sh 

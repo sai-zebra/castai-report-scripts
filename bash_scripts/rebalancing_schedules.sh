@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_DIR="json_output/rebalancing_schedules"
-TOKEN="<API_TOKEN>"
+TOKEN="${API_TOKEN}"
 
 mkdir -p "$OUTPUT_DIR"
 
