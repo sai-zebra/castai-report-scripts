@@ -1,4 +1,4 @@
-name: CASTAI-Report Generation Pipeline
+name: CASTAI-Report Generation
  
 on:
   schedule:
@@ -6,16 +6,19 @@ on:
   workflow_dispatch:    #manual trigger
    inputs:
     start_time:
-     description: "Enter Start Time (YYYY:MM:DDTHH:MM:SS.000000Z)"
+     description: "Enter Start-Time(YYYY:MM:DDTHH:MM:SS.000000Z)"
      required: true
     end_time:
-     description: "Enter End Time (YYYY:MM:DDTHH:MM:SS.000000Z)"
+     description: "Enter End-Time(YYYY:MM:DDTHH:MM:SS.000000Z)"
      required: true
 jobs:
  
 # JOB 1: Generate clusters_list.txt and all_clusters.xlsx
   generate-clusters:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
  
     steps:
       - name: Checkout Code
@@ -66,6 +69,9 @@ jobs:
   process-data:
     runs-on: ubuntu-latest
     needs: generate-clusters
+    permissions:
+      contents: read
+      actions: write
  
     steps:
       - name: Checkout Code
@@ -117,6 +123,9 @@ jobs:
   generate-report:
     runs-on: ubuntu-latest
     needs: process-data
+    permissions:
+      contents: read
+      actions: write
  
     steps:
       - name: Checkout Code
@@ -155,7 +164,7 @@ jobs:
             cluster_details/clusters_list.txt
  
       - name: Success Message
-        run: echo "CASTAI-Report Generation Pipeline completed successfully!"
+        run: echo "CASTAI-Report Generation completed successfully!"
 
 #JOB 4: Send Email Notification
 #   send-email:
