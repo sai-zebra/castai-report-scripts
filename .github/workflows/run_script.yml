@@ -44,7 +44,13 @@ jobs:
         run: |
           chmod +x execute_scripts/all_clusters.sh
           ./execute_scripts/all_clusters.sh
- 
+
+      - name: upload JSON output
+        uses: actions/upload-artifact@v4
+        with:
+          name: clusters-data
+          path: |
+             json_output/
       #executing all_clusters.py
       - name: Run all_clusters Python Script
         run: |
@@ -56,118 +62,118 @@ jobs:
           ls -l cluster_details/
           cat cluster_details/clusters_list.txt
  
-      #Upload all_clusters.txt and all_clusters.xlsx to artifact
       - name: Upload Cluster Outputs
         uses: actions/upload-artifact@v4
         with:
           name: clusters-data
           path: |
             cluster_details/clusters_list.txt
-            json_output/all_clusters.json
             xlsx_output/all_clusters.xlsx
  
  
-# JOB 2: Executing other bash_scripts and python_scripts to convert JSON data into excel files 
-  process-data:
-    runs-on: ubuntu-latest
-    needs: generate-clusters
-    permissions:
-      contents: read
-      actions: write
+# # JOB 2: Executing other bash_scripts and python_scripts to convert JSON data into excel files 
+#   process-data:
+#     runs-on: ubuntu-latest
+#     needs: generate-clusters
+#     permissions:
+#       contents: read
+#       actions: write
  
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
  
-      - name: Download Cluster Data
-        uses: actions/download-artifact@v4
-        with:
-          name: clusters-data
-          path: .
+#       - name: Download Cluster Data
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: clusters-data
+#           path: .
  
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+#       - name: Setup Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.9'
  
-      - name: Install Dependencies
-        run: pip install pandas openpyxl narwhals
+#       - name: Install Dependencies
+#         run: pip install pandas openpyxl narwhals
  
-      - name: Run Bash Scripts
-        env:
-         START_TIME: ${{github.event.inputs.start_time}}
-         END_TIME: ${{github.event.inputs.end_time}}
-        run: |
-          chmod +x execute_scripts/run_bashscripts.sh
-          ./execute_scripts/run_bashscripts.sh 
- 
-      - name: Run Python Scripts
-        run: |
-          chmod +x execute_scripts/run_pythonscripts.sh
-          ./execute_scripts/run_pythonscripts.sh
- 
-      # Upload everything INCLUDING previous excel
-      - name: Upload JSON and Excel Outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: processed-outputs
-          path: |
-            json_output/
-            xlsx_output/
-            cluster_details/clusters_list.txt
- 
- 
-# JOB 3: Generate Final Report
-  generate-report:
-    runs-on: ubuntu-latest
-    needs: process-data
-    permissions:
-      contents: read
-      actions: write
- 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
- 
-      - name: Download Processed Outputs
-        uses: actions/download-artifact@v4
-        with:
-          name: processed-outputs
- 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
- 
-      - name: Install Dependencies
-        run: pip install pandas openpyxl xlsxwriter
- 
-      - name: Create Report Folder
-        run: mkdir -p cast.ai_report
+#       - name: Run Bash Scripts
+#         env:
+#          START_TIME: ${{github.event.inputs.start_time}}
+#          END_TIME: ${{github.event.inputs.end_time}}
+#         run: |
+#           chmod +x execute_scripts/run_bashscripts.sh
+#           ./execute_scripts/run_bashscripts.sh 
 
-      - name: Merge Excel Files
-        run: python execute_scripts/merge_excelfiles.py
+#       - name: Upload Bash Script JSON Outputs
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: processed-outputs
+#           path: |
+#             json_output/
  
-      - name: Generate HTML Report
-        run: python execute_scripts/excel_to_html_report.py
+#       - name: Run Python Scripts
+#         run: |
+#           chmod +x execute_scripts/run_pythonscripts.sh
+#           ./execute_scripts/run_pythonscripts.sh
  
-      - name: Upload Final Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: castai-final-report
-          path: |
-            cast.ai_report/
-            json_output/
-            xlsx_output/
-            cluster_details/clusters_list.txt
+#       - name: Upload JSON and Excel Outputs
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: processed-outputs
+#           path: |
+#             xlsx_output/
+#             cluster_details/clusters_list.txt
  
-      - name: Success Message
-        run: echo "CASTAI-Report Generation completed successfully!"
+ 
+# # JOB 3: Generate Final Report
+#   generate-report:
+#     runs-on: ubuntu-latest
+#     needs: process-data
+#     permissions:
+#       contents: read
+#       actions: write
+ 
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+ 
+#       - name: Download Processed Outputs
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: processed-outputs
+ 
+#       - name: Setup Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.9'
+ 
+#       - name: Install Dependencies
+#         run: pip install pandas openpyxl xlsxwriter
+ 
+#       - name: Create Report Folder
+#         run: mkdir -p cast.ai_report
+
+#       - name: Merge Excel Files
+#         run: python execute_scripts/merge_excelfiles.py
+ 
+#       - name: Generate HTML Report
+#         run: python execute_scripts/excel_to_html_report.py
+ 
+#       - name: Upload Final Report
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: castai-final-report
+#           path: |
+#             cast.ai_report/
+ 
+#       - name: Success Message
+#         run: echo "CASTAI-Report Generation completed successfully!"
 
 #JOB 4: Send Email Notification
 #   send-email:
 #     runs-on: ubuntu-latest
-#     need: generate-report
+#     needs: generate-report
 
 #     steps:
 #       - name: Checkout Code
