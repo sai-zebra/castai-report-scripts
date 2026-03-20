@@ -36,6 +36,7 @@ jobs:
       - name: Create cluster_details folder
         run: | 
           mkdir -p cluster_details
+          mkdir -p json_output
           mkdir -p xlsx_output
       
       #executing all_clusters.sh
@@ -62,6 +63,7 @@ jobs:
           name: clusters-data
           path: |
             cluster_details/clusters_list.txt
+            json_output/all_clusters.json
             xlsx_output/all_clusters.xlsx
  
  
