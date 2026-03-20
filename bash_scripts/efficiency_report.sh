@@ -2,7 +2,7 @@
 
 CLUSTER_FILE="cluster_details/clusters_list.txt"
 OUTPUT_DIR="json_output/efficiency_report"
-TOKEN="{$API_TOKEN}"
+TOKEN="${API_TOKEN}"
 
 if [ -z "$START_TIME" ] || [ -z "$END_TIME" ]; then
     echo "ERROR: START_TIME and END_TIME must be provided 
