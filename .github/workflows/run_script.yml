@@ -91,10 +91,6 @@ jobs:
       - name: Install Dependencies
         run: pip install pandas openpyxl narwhals
  
-      # - name: Create Output Folders 
-      #   run: |
-      #     mkdir -p json_output
- 
       - name: Run Bash Scripts
         env:
          START_TIME: ${{github.event.inputs.start_time}}
