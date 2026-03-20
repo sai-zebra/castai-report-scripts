@@ -104,13 +104,6 @@ jobs:
         run: |
           chmod +x execute_scripts/run_bashscripts.sh
           ./execute_scripts/run_bashscripts.sh 
-
-      - name: Upload Bash Script JSON Outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: processed-outputs
-          path: |
-            json_output/
  
       - name: Run Python Scripts
         run: |
