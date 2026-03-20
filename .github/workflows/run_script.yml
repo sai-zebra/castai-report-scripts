@@ -11,6 +11,11 @@ on:
     end_time:
      description: "Enter End-Time(YYYY:MM:DDTHH:MM:SS.000000Z)"
      required: true
+
+env:
+ API_TOKEN: ${{secrets.API_TOKEN}}
+ ORG_ID: ${{secrets.ORG_ID}}
+
 jobs:
  
 # JOB 1: Generate clusters_list.txt and all_clusters.xlsx
@@ -45,12 +50,6 @@ jobs:
           chmod +x execute_scripts/all_clusters.sh
           ./execute_scripts/all_clusters.sh
 
-      - name: upload JSON output
-        uses: actions/upload-artifact@v4
-        with:
-          name: clusters-data
-          path: |
-             json_output/
       #executing all_clusters.py
       - name: Run all_clusters Python Script
         run: |
@@ -68,6 +67,7 @@ jobs:
           name: clusters-data
           path: |
             cluster_details/clusters_list.txt
+            json_output/
             xlsx_output/all_clusters.xlsx
  
  
